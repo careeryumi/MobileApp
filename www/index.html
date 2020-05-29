@@ -1,0 +1,365 @@
+<!--
+// Mobile web development
+// index.html
+// Final Project
+// Template for General purpose html5 page with JQuery Mobile
+// Created by: Yumi Lee
+// email: ylee4918@conestogac.on.ca
+// Date: April 18, 2020
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <title>Here Map App</title>
+
+        <script src="js/lib/jquery-2.1.4.js"></script>
+        <script src="js/lib/jquery.mobile-1.4.5.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/lib/jquery.mobile-1.4.5.css">
+
+        <!--jQuery validator-->
+        <script src="js/lib/jquery.validate.js"></script>
+
+        <!--our scripts and stylesheets-->
+        <script src="js/yldatabase.js"></script>
+        <script src="js/ylfacade.js"></script>
+        <script src="js/ylfeedbackDAL.js"></script>
+        <script src="js/ylglobal.js"></script>
+        <script src="js/ylutil.js"></script>
+
+        <!--here map library starts here-->
+        <!--https://developer.here.com/documentation/maps/dev_guide/topics/get-started.html-->
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+                type="text/javascript" charset="utf-8"></script>
+        <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+                type="text/javascript" charset="utf-8"></script>
+
+        <!--here map library ends here-->
+        <script src="js/geo.js"></script>
+        <link rel="stylesheet" type="text/css" href="css/mystyle.css">
+
+        <!--include cordova.js here-->
+        <script type="text/javascript" src="cordova.js"></script>
+
+    </head>
+    <body>
+
+        <!--The first Page-->
+        <div data-role="page" id="ylHomePage">
+            <header data-role="header" data-position="fixed" style="background-color: white">
+            </header>
+            <section data-role="content">
+                <p style="text-align: center;">
+                    <img src="img/logo.png" alt="logo icon" width=60% height=60%>
+                </p>
+                <h1><b> Already have an account?</b></h1>
+                <form id="firstPageForm" name="firstPageForm">
+                    <label for="txtFirstPageEmail">Email:</label>
+                    <input type="text" id="txtFirstPageEmail" name="txtFirstPageEmail">
+                    <label for="txtFirstPagePassword">Password:</label>
+                    <input type="password" id="txtFirstPagePassword" name="txtFirstPagePassword">
+                </form>
+                <button type="button" data-role="button" style="background-color: yellow;" id="btnLogin"
+                        name="btnLogin">Login
+                </button>
+                <br>
+
+                <form id="formRegister" name="formRegister">
+                    <button type="button" data-role="button" style="background-color: red;" id="btnRegister"
+                            name="btnRegister">
+                        <div style="color: white;">Register</div>
+                    </button>
+                    <div id="divRegister" name="divRegister" style="display:none">
+
+                        <label for="txtRegisterFirstName" align=right>Your First Name:</label>
+                        <input type="text" id="txtRegisterFirstName" name="txtRegisterFirstName">
+
+                        <label for="txtRegisterLastName" align=right>Your Last Name:</label>
+                        <input type="text" id="txtRegisterLastName" name="txtRegisterLastName">
+
+                        <label for="txtRegisterEmail" align=right>Your Email address:</label>
+                        <input type="text" id="txtRegisterEmail" name="txtRegisterEmail">
+
+                        <label for="txtRegisterPassword" align=right>Password:</label>
+                        <input type="password" id="txtRegisterPassword" name="txtRegisterPassword">
+
+                        <label for="txtRegisterPasswordVerify" align=right>Verify Password:</label>
+                        <input type="password" id="txtRegisterPasswordVerify" name="txtRegisterPasswordVerify">
+
+                        <label for="txtPointcardNumber" align=right>Your point card number(optional):</label>
+                        <input type="number" id="txtPointcardNumber" name="txtPointcardNumber">
+
+                        <button type="button" data-role="button" style="background-color: orange;" id="btnCreateAccount"
+                                name="btnCreateAccount">
+                            <div style="color: white;">Create account</div>
+                        </button>
+                    </div>
+                </form>
+
+            </section>
+            <footer data-role="footer" data-theme="b" data-position="fixed" style="background-color: white">
+                <h4 style="color: black">&copy; 2020 Yumi Lee</h4>
+            </footer>
+        </div>
+
+        <!--Menu Pages start-->
+        <!--Menu Your offers start-->
+        <div data-role="page" id="pageYourOffers">
+            <header data-role="header" data-theme="a" data-position="fixed" style="background-color: red">
+                <p align="center">
+                    <span id="your" style="color: white; font-size: 22px"></span>
+                    <span style="color: white; font-size: 22px">'s points</span>
+                </p>
+                <div id="point" style="color: white; font-size: 22px" align="center"></div>
+                <p align="center">
+                    <span style="color: white; font-size: 22px">Redeemable value</span>
+                    <span id="redeemableValue" style="color: white; font-size: 22px"></span>
+                </p>
+
+            </header>
+            <section data-role="content">
+
+                <ul id="lvAll1" data-role="listview" class="ui-listview-inset">
+
+                    <li>
+                        <a href="#">
+                            <img src="img/paprica.PNG" width="100%" height="100%" alt="Onions">
+                            <h3>Paprica <br>500 points <br> For every $1 spent on</h3>
+                        </a>
+                    </li>
+
+                    <br>
+                    <li>
+                        <a href="#">
+                            <img src="img/onion.PNG" width="100%" height="100%" alt="Onions">
+                            <h3>Onions <br>500 points <br> For every $10 spent on</h3>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="img/tomato.PNG" width="100%" height="100%" alt="tomato">
+                            <h3>tomato <br>500 points <br> For every $10 spent on</h3>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#">
+                            <img src="img/coca.PNG" width="100%" height="100%" alt="coca">
+                            <h3>Coca <br>500 points <br> For every $10 spent on</h3>
+                        </a>
+                    </li>
+                </ul>
+            </section>
+
+            <footer data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageYourOffers" data-icon="star" style="background-color: orange; color:white">Your
+                            Offers</a></li>
+                        <li><a href="#pageFlyers" data-icon="grid">Flyers</a></li>
+                        <li><a href="#pagePointCard" data-icon="gear">Point Card</a></li>
+                        <li><a href="#pageAccount" data-icon="search">Account</a></li>
+                        <li><a href="#pageAbout" data-icon="search">About</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+
+        <!--Flyers start-->
+        <div data-role="page" id="pageFlyers" data-url="map-page">
+
+            <header data-role="header" data-theme="a" data-position="fixed" style="background-color: red">
+                <p style="color: white; font-size: 28px" align="center" style="float:left;">Your Flyers
+                    <img src="img/logo.png" width="20%" height="20%" alt="logo" style="float:right;">
+                </p>
+            </header>
+
+            <div style="padding: 20px">
+                <label for="txtSearchPost"></label>
+                <form id="formSearch" name="formSearch">
+                    <label for="txtFormSearch"></label>
+                    <input type="text" id="txtFormSearch" name="txtFormSearch">
+                </form>
+                <button type="button" data-role="button" style="background-color: yellow;" id="btnSearch"
+                        name="btnSearch">Search with your postal code
+                </button>
+            </div>
+
+            <!--<button type="button" id="btnShow" name="btnShow" data-icon="plus" data-inline="true" class="ui-btn-active">-->
+            <!--    Show-->
+            <!--</button>-->
+
+            <!--map goes here-->
+            <div style="width: 100%; height: 100%" id="mapContainer"></div>
+
+            <footer data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageYourOffers" data-icon="star">Your Offers</a></li>
+                        <li><a href="#pageFlyers" data-icon="grid"
+                               style="background-color: orange; color:white">Flyers</a></li>
+                        <li><a href="#pagePointCard" data-icon="gear">Point Card</a></li>
+                        <li><a href="#pageAccount" data-icon="search">Account</a></li>
+                        <li><a href="#pageAbout" data-icon="search">About</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+
+        <!--Page Point Card start-->
+        <div data-role="page" id="pagePointCard" style="background-color: red">
+            <header data-role="header" data-theme="a" data-position="fixed" style="background-color: red">
+                <p style="color: white; font-size: 28px" align="center" style="float:left;">Scan your card
+                    <img src="img/logo.png" width="20%" height="20%" alt="logo" style="float:right;">
+                </p>
+
+            </header>
+            <section data-role="content" class="sectionPointCard">
+                <div style="border:solid; padding-right:20px; padding-left:20px; border-color: white; background-color: white">
+                    <img src="img/logo.png" width="40%" height="40%" alt="logo" style="float:left;">
+                    <br><br>
+                    <span id="nameOnPointCard" style="float:right; font-size: 25px">yumi</span>
+                    <img src="img/barcode.JPG" width="100%" height="100%" alt="barcode">
+                    <div id="pointCardNumber" align="center" style="font-size: 25px"></div>
+                </div>
+                <Br>
+                <div style="border:solid; padding-right:20px; padding-left:20px; border-color: white;
+                background-color: white">
+                    <h1 align="center" style="font-size: 25px">Your points</h1>
+                    <div align="center" id="pointPointCardPage" style="font-size: 25px;"></div>
+
+                </div>
+                <br>
+                <div data-role="navbar" data-iconpos="left">
+                    <ul>
+                        <li><a href="#pageAccount" data-icon="search">With your device's Potrait
+                            Orientation Lock off, <br> rotate your phone to access your card at any time</a></li>
+                    </ul>
+                </div>
+                <br>
+                <br>
+                <br>
+                <br>
+
+            </section>
+            <footer data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageYourOffers" data-icon="star">Your Offers</a></li>
+                        <li><a href="#pageFlyers" data-icon="grid">Flyers</a></li>
+                        <li><a href="#pagePointCard" data-icon="gear" style="background-color: orange; color:white">Point
+                            Card</a></li>
+                        <li><a href="#pageAccount" data-icon="search">Account</a></li>
+                        <li><a href="#pageAbout" data-icon="search">About</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+
+        <!--Account start-->
+        <div data-role="page" id="pageAccount" style="background-color: red">
+
+            <header data-role="header" data-theme="a" data-position="fixed" style="background-color: red">
+                <p style="color: white; font-size: 28px" align="center" style="float:left;">Account Settings
+                    <img src="img/logo.png" width="20%" height="20%" alt="logo" style="float:right;">
+                </p>
+            </header>
+            <section data-role="content" id="sectionEdit" class="sectionPointCard">
+                <div style="border:solid; padding-right:40px; padding-left:40px; padding-bottom:30px;
+                    border-color: white; background-color: white">
+                    <h1 align="center">Edit personal information</h1>
+
+                    <form id="formEdit" name="formEdit">
+
+                        <label for="txtEmailEdit" align=right>Your Email address (Unchangeable):</label>
+                        <input type="text" id="txtEmailEdit" name="txtEmailEdit" disabled>
+
+                        <label for="txtFirstNameEdit" align=right>Your First Name:</label>
+                        <input type="text" id="txtFirstNameEdit" name="txtFirstNameEdit">
+
+                        <label for="txtLastNameEdit" align=right>Your Last Name:</label>
+                        <input type="text" id="txtLastNameEdit" name="txtLastNameEdit">
+
+                        <label for="txtPasswordEdit" align=right>Password:</label>
+                        <input type="password" id="txtPasswordEdit" name="txtPasswordEdit">
+
+                        <label for="txtPointcardNumberEdit" align=right>Your point card number:</label>
+                        <input type="number" id="txtPointcardNumberEdit" name="txtPointcardNumberEdit">
+
+                        <button type="button" data-role="button" style="background-color: yellow;" id="btnSaveEdit"
+                                name="btnSaveEdit">Save
+                        </button>
+
+                    </form>
+
+                    <button type="button" id="btnLogOut" name="btnLogOut" data-inline="true"
+                            style="float: right;" class="ui-btn-active">
+                    Log out</button>
+                    <button type="button" id="clearDatabase" name="clearDatabase" data-inline="true"
+                            style="float: right;" class="ui-btn-active">
+                        Clear database </button>
+                    <br>
+                    <br>
+
+                </div>
+
+            </section>
+            <footer data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageYourOffers" data-icon="star">Your Offers</a></li>
+                        <li><a href="#pageFlyers" data-icon="grid">Flyers</a></li>
+                        <li><a href="#pagePointCard" data-icon="gear">Point Card</a></li>
+                        <li><a href="#pageAccount" data-icon="search" style="background-color: orange; color:white">Account</a>
+                        <li><a href="#pageAbout" data-icon="search">About</a></li>
+                        </li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+
+        <!--About page start-->
+        <div data-role="page" id="pageAbout">
+            <header data-role="header" data-theme="a" data-position="fixed" style="background-color: red">
+                <p style="color: white; font-size: 28px" align="center" style="float:left;">About
+                    <img src="img/logo.png" width="20%" height="20%" alt="logo" style="float:right;">
+                </p>
+            </header>
+            <section data-role="content">
+                <div align="left">
+                <pre style="font-size: 25px">
+Name: Yumi Lee
+Student number: 7484918<br>
+Mobile web development
+Section 3 / Final Project
+Created: April 17 2020<br>
+Reference:
+PC optimum point app(design)
+https://www.pcoptimum.ca/
+https://pixabay.com/(pic)
+Assignment 1,2,3 (project)
+CordovaHereMap (project)
+
+Thank you Sabbir!
+
+                </pre>
+                </div>
+            </section>
+            <footer data-role="footer" data-theme="a" data-position="fixed">
+                <div data-role="navbar" data-iconpos="top">
+                    <ul>
+                        <li><a href="#pageYourOffers" data-icon="star">Your
+                            Offers</a></li>
+                        <li><a href="#pageFlyers" data-icon="grid">Flyers</a></li>
+                        <li><a href="#pagePointCard" data-icon="gear">Point Card</a></li>
+                        <li><a href="#pageAccount" data-icon="search">Account</a></li>
+                        <li><a href="#pageAbout" data-icon="plus"
+                               style="background-color: orange; color:white">About</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </body>
+</html>

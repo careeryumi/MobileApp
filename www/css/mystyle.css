@@ -1,0 +1,55 @@
+#pageFlyers{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+}
+
+label.error{
+    color: #F00;
+    font-weight: bold;
+}
+
+input.error,
+select.error,
+textarea.error {
+    border: 1px red solid;
+}
+
+label {
+    display: inline-block;
+}​
+
+
+ .container {
+     position: relative;
+     width: 100%;
+     height: 300px;
+ }
+
+.blur {
+    background-image: url("../img/background.jpg");
+    /*background-image: url("https://pixabay.com/photos/tulips-tulip-orange-red-background-2544/");*/
+    background-color: red;
+    /*background: red;*/
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(20px);
+    -moz-filter: blur(20px);
+    -o-filter: blur(20px);
+    -ms-filter: blur(20px);
+    filter: blur(20px);
+    z-index: 1;
+}
+
+#overlay {
+    color: #FFF;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 2;
+}
+
+.sectionPointCard{
+    background-image: url("../img/logo.png");
+}
